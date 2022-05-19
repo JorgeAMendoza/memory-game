@@ -1,11 +1,7 @@
-import './App.css';
+import GameStart from './components/GameStart/GameStart';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Memory game</h1>
-    </div>
-  );
+  return <GameStart />;
 }
 
 export default App;
