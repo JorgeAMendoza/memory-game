@@ -25,4 +25,7 @@ const gameSlice = createSlice({
   },
 });
 
+export const { setupGame, incrementPlayerScore, resetPlayerScores, resetGame } =
+  gameSlice.actions;
+
 export default gameSlice.reducer;

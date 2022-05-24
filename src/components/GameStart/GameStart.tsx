@@ -1,20 +1,42 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import GameInformation from '../../types/game-context-types';
+import { Player } from '../../types/game-context-types';
+import { setupGame } from '../../redux/game-reducer';
 import whiteLogo from '../../assets/logo-white.svg';
 
-type GameType = 'Number' | 'Icon';
+type GameType = 'numbers' | 'icons';
 type NumOfPlayers = 1 | 2 | 3 | 4;
 type GridSize = '4x4' | '6x6';
 
 const GameStart = () => {
-  const [gameType, setGameType] = useState<GameType>('Number');
+  const [gameType, setGameType] = useState<GameType>('numbers');
   const [numPlayers, setNumPlayers] = useState<NumOfPlayers>(1);
   const [gridSize, setGridSize] = useState<GridSize>('4x4');
+  const dispatch = useDispatch();
 
   const startGame = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(
-      'starting game, or really, set context and direct to next page'
-    );
+
+    const players: Player[] = [];
+
+    const playerNames: ['1', '2', '3', '4'] = ['1', '2', '3', '4'];
+
+    for (let i = 0; i < numPlayers; i++) {
+      const newPlayer: Player = {
+        name: playerNames[0],
+        score: 0,
+      };
+      players.push(newPlayer);
+    }
+
+    const newGameConfig: GameInformation = {
+      gameType: gameType,
+      numOfPlayers: numPlayers,
+      boardSize: gridSize,
+      players,
+    };
+    dispatch(setupGame(newGameConfig));
   };
 
   return (
@@ -33,8 +55,8 @@ const GameStart = () => {
                 <input
                   type="radio"
                   name="gameType"
-                  checked={gameType === 'Number' ? true : false}
-                  onChange={() => setGameType('Number')}
+                  checked={gameType === 'numbers' ? true : false}
+                  onChange={() => setGameType('numbers')}
                 />
               </label>
 
@@ -43,7 +65,7 @@ const GameStart = () => {
                 <input
                   type="radio"
                   name="gameType"
-                  onChange={() => setGameType('Icon')}
+                  onChange={() => setGameType('icons')}
                 />
               </label>
             </div>
@@ -92,7 +114,5 @@ const GameStart = () => {
     </div>
   );
 };
-
-// focus on settign up the state of the game start meaning that each button click needs to set up some data, and at teh end we need to set the context state of the application.
 
 export default GameStart;
