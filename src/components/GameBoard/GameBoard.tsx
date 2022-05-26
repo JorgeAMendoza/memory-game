@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import darkLogo from '../../assets/logo-dark.svg';
-import GameTiles from './GameTiles';
+import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
 import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
 
 const GameBoard = () => {
-  const [clickedPiece, setClickedPiece] = useState('');
+  const [clickedPiece, setClickedPiece] = useState<string | number>('');
   const state = useAppSelector((state) => state);
   const navigate = useNavigate();
 
@@ -26,7 +26,6 @@ const GameBoard = () => {
 
   return (
     <main>
-      {/* render amount of pieces needed, determined by props */}
       <header>
         <img src={darkLogo} alt="Game logo" />
         <div>
@@ -36,11 +35,13 @@ const GameBoard = () => {
       </header>
 
       <section>
-        <GameTiles
-          boardSize={state.boardSize}
-          gameType={state.gameType}
-          setClickedPiece={setClickedPiece}
-        />
+        {!state.boardSize ? null : (
+          <GameTilesWrapper
+            boardSize={state.boardSize}
+            gameType={state.gameType}
+            setClickedPiece={setClickedPiece}
+          />
+        )}
       </section>
 
       <section>
