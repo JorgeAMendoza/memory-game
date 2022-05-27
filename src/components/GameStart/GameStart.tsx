@@ -4,7 +4,6 @@ import GameInformation from '../../types/game-context-types';
 import { Player } from '../../types/game-context-types';
 import { setupGame } from '../../redux/game-reducer';
 import whiteLogo from '../../assets/logo-white.svg';
-import { useNavigate } from 'react-router-dom';
 
 type GameType = 'numbers' | 'icons';
 type NumOfPlayers = 1 | 2 | 3 | 4;
@@ -15,7 +14,6 @@ const GameStart = () => {
   const [numPlayers, setNumPlayers] = useState<NumOfPlayers>(1);
   const [gridSize, setGridSize] = useState<GridSize>('4x4');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const startGame = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +37,6 @@ const GameStart = () => {
       players,
     };
     dispatch(setupGame(newGameConfig));
-    navigate('/game-active');
   };
 
   return (
