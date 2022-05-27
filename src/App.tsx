@@ -1,14 +1,13 @@
 import GameStart from './components/GameStart/GameStart';
 import GameBoard from './components/GameBoard/GameBoard';
-import { Routes, Route } from 'react-router-dom';
+import { useAppSelector } from './hooks';
 
 function App() {
+  const state = useAppSelector((state) => state);
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<GameStart />} />
-        <Route path="game-active" element={<GameBoard />} />
-      </Routes>
+      {!state.gameType && <GameStart />}
+      {state.gameType && <GameBoard />}
     </div>
   );
 }

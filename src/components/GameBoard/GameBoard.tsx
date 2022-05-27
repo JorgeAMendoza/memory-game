@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import darkLogo from '../../assets/logo-dark.svg';
 import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
@@ -9,15 +8,10 @@ import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
   const state = useAppSelector((state) => state);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!state.boardSize) navigate('/');
-  }, []);
+  const dispatch = useAppDispatch();
 
   const newGame = () => {
     console.log('navigating back to the home');
-    navigate('/');
   };
 
   const resetGame = () => {
