@@ -20,7 +20,8 @@ const gameSlice = createSlice({
       state.players.map((player) => (player.score = 0));
     },
     resetGame(_state) {
-      return {} as GameInformation;
+      const newGameConfig: GameInformation = {} as GameInformation;
+      return newGameConfig;
     },
   },
 });

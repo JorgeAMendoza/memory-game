@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { resetGame } from '../../redux/game-reducer';
 import darkLogo from '../../assets/logo-dark.svg';
 import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
 import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
+import GameInformation from '../../types/game-context-types';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
@@ -11,11 +13,24 @@ const GameBoard = () => {
   const dispatch = useAppDispatch();
 
   const newGame = () => {
-    console.log('navigating back to the home');
+    dispatch(resetGame());
   };
 
-  const resetGame = () => {
+  const startNewGame = () => {
     console.log('reseting game');
+  };
+
+  const clickPiece = (value: number | string) => {
+    if (clickedPiece === '') {
+      setClickedPiece(value);
+      return;
+    }
+
+    if (clickedPiece === value) {
+      console.log('we have a winner');
+    }
+
+    setClickedPiece('');
   };
 
   return (
@@ -33,7 +48,7 @@ const GameBoard = () => {
           <GameTilesWrapper
             boardSize={state.boardSize}
             gameType={state.gameType}
-            setClickedPiece={setClickedPiece}
+            clickPiece={clickPiece}
           />
         )}
       </section>
