@@ -5,13 +5,13 @@ import createRandomNums from '../../utils/create-random-nums';
 interface GameTilesProps {
   boardSize: '4x4' | '6x6';
   gameType: 'numbers' | 'icons';
-  setClickedPiece: React.Dispatch<string | number>;
+  clickPiece: (value: string | number) => void;
 }
 
 const GameTilesWrapper = ({
   boardSize,
   gameType,
-  setClickedPiece,
+  clickPiece,
 }: GameTilesProps) => {
   const [tileValues, setTileValues] = useState<number[][]>([]);
   const [resetGame, setResetGame] = useState<boolean>(true);
@@ -31,7 +31,6 @@ const GameTilesWrapper = ({
 
   const renderNumberTiles = (): Array<ReactNode> => {
     const gameTiles: Array<ReactNode> = [];
-    console.log('rendering number tiles');
 
     for (let i = 0; i < tileValues.length; i++) {
       for (let j = 0; j < tileValues[i].length; j++) {
@@ -39,7 +38,7 @@ const GameTilesWrapper = ({
           <GameTile
             key={`${i},${j}`}
             value={tileValues[i][j]}
-            setClickedPiece={setClickedPiece}
+            clickPiece={clickPiece}
           />
         );
       }
@@ -49,7 +48,6 @@ const GameTilesWrapper = ({
 
   const renderIconTiles = (): Array<ReactNode> => {
     const gameTiles: Array<ReactNode> = [];
-    console.log('rendering icon tiles');
     return gameTiles;
   };
   return <div>{tileValues.length !== 0 ? renderGameTiles() : null}</div>;

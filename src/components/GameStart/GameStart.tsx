@@ -4,6 +4,7 @@ import GameInformation from '../../types/game-context-types';
 import { Player } from '../../types/game-context-types';
 import { setupGame } from '../../redux/game-reducer';
 import whiteLogo from '../../assets/logo-white.svg';
+import { useAppDispatch } from '../../hooks';
 
 type GameType = 'numbers' | 'icons';
 type NumOfPlayers = 1 | 2 | 3 | 4;
@@ -13,7 +14,7 @@ const GameStart = () => {
   const [gameType, setGameType] = useState<GameType>('numbers');
   const [numPlayers, setNumPlayers] = useState<NumOfPlayers>(1);
   const [gridSize, setGridSize] = useState<GridSize>('4x4');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const startGame = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
