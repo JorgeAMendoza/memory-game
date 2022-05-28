@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import GameInformation from '../../types/game-context-types';
 import { Player } from '../../types/game-context-types';
 import { setupGame } from '../../redux/game-reducer';
@@ -27,9 +26,11 @@ const GameStart = () => {
       const newPlayer: Player = {
         name: playerNames[0],
         score: 0,
+        currentTurn: false,
       };
       players.push(newPlayer);
     }
+    players[0].currentTurn = true;
 
     const newGameConfig: GameInformation = {
       gameType: gameType,

@@ -1,6 +1,7 @@
 export interface Player {
   name: '1' | '2' | '3' | '4';
   score: number;
+  currentTurn: boolean;
 }
 
 interface GameInformation {

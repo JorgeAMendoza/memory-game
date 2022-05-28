@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { resetGame } from '../../redux/game-reducer';
 import darkLogo from '../../assets/logo-dark.svg';
 import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
 import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
-import GameInformation from '../../types/game-context-types';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
@@ -38,7 +37,7 @@ const GameBoard = () => {
       <header>
         <img src={darkLogo} alt="Game logo" />
         <div>
-          <button onClick={resetGame}>Reset</button>
+          <button onClick={startNewGame}>Reset</button>
           <button onClick={newGame}>New Game</button>
         </div>
       </header>
