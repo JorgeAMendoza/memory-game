@@ -2,14 +2,15 @@ import { useAppSelector } from '../../hooks';
 import PlayerScore from '../PlayerScore/PlayerScore';
 
 const MultiplePlayerScore = () => {
-  const state = useAppSelector((state) => state);
+  const players = useAppSelector((state) => state.players);
   return (
     <section>
-      {state.players.map((player) => (
+      {players.map((player) => (
         <PlayerScore
           key={player.name}
           name={player.name}
           score={player.score}
+          currentTurn={player.currentTurn}
         />
       ))}
     </section>

@@ -24,13 +24,15 @@ const GameStart = () => {
 
     for (let i = 0; i < numPlayers; i++) {
       const newPlayer: Player = {
-        name: playerNames[0],
+        name: playerNames[i],
         score: 0,
         currentTurn: false,
       };
       players.push(newPlayer);
     }
     players[0].currentTurn = true;
+
+    console.log(players);
 
     const newGameConfig: GameInformation = {
       gameType: gameType,

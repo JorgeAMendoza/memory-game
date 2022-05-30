@@ -11,10 +11,19 @@ const gameSlice = createSlice({
       const gameConfig = action.payload;
       return gameConfig;
     },
-    incrementPlayerScore(state, action: PayloadAction<string>) {
+    incrementPlayerScore(state) {
       const { players } = state;
-      const currentPlayer = players[Number(action.payload)];
-      currentPlayer.score += 1;
+      const currentPlayer = players.find((player) => player.currentTurn);
+      if (currentPlayer) currentPlayer.score += 1;
+    },
+    nextTurn(state) {
+      const { players } = state;
+      const currentPlayer = players.findIndex((player) => player.currentTurn);
+      if (currentPlayer !== -1) players[currentPlayer].currentTurn = false;
+
+      if (currentPlayer + 1 >= state.players.length)
+        state.players[0].currentTurn = true;
+      else state.players[currentPlayer + 1].currentTurn = true;
     },
     resetPlayerScores(state) {
       state.players.map((player) => (player.score = 0));
@@ -26,7 +35,12 @@ const gameSlice = createSlice({
   },
 });
 
-export const { setupGame, incrementPlayerScore, resetPlayerScores, resetGame } =
-  gameSlice.actions;
+export const {
+  setupGame,
+  incrementPlayerScore,
+  resetPlayerScores,
+  resetGame,
+  nextTurn,
+} = gameSlice.actions;
 
 export default gameSlice.reducer;

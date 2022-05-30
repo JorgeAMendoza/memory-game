@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { resetGame } from '../../redux/game-reducer';
+import {
+  resetGame,
+  incrementPlayerScore,
+  nextTurn,
+} from '../../redux/game-reducer';
 import darkLogo from '../../assets/logo-dark.svg';
 import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
@@ -8,6 +12,7 @@ import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
+  const [movesMade, setMovesMade] = useState(0);
   const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
@@ -20,13 +25,16 @@ const GameBoard = () => {
   };
 
   const clickPiece = (value: number | string) => {
+    setMovesMade(movesMade + 1);
     if (clickedPiece === '') {
       setClickedPiece(value);
       return;
     }
 
     if (clickedPiece === value) {
-      console.log('we have a winner');
+      dispatch(incrementPlayerScore());
+    } else {
+      dispatch(nextTurn());
     }
 
     setClickedPiece('');
@@ -54,7 +62,7 @@ const GameBoard = () => {
 
       <section>
         {state.players.length === 1 ? (
-          <SinglePlayerScore />
+          <SinglePlayerScore moves={movesMade} />
         ) : (
           <MultiplePlayerScore />
         )}
