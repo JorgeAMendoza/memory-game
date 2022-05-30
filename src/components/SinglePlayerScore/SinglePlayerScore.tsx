@@ -1,4 +1,8 @@
-const SinglePlayerScore = () => {
+interface SinglePlayerScore {
+  moves: number;
+}
+
+const SinglePlayerScore = ({ moves }: SinglePlayerScore) => {
   return (
     <section>
       <div>
@@ -7,7 +11,7 @@ const SinglePlayerScore = () => {
       </div>
       <div>
         <p>Moves</p>
-        <p>0</p>
+        <p>{moves}</p>
       </div>
     </section>
   );

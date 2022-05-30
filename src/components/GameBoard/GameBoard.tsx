@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { resetGame } from '../../redux/game-reducer';
+import {
+  resetGame,
+  incrementPlayerScore,
+  nextTurn,
+} from '../../redux/game-reducer';
 import darkLogo from '../../assets/logo-dark.svg';
 import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
 import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
-import GameInformation from '../../types/game-context-types';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
+  const [movesMade, setMovesMade] = useState(0);
   const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
@@ -21,13 +25,16 @@ const GameBoard = () => {
   };
 
   const clickPiece = (value: number | string) => {
+    setMovesMade(movesMade + 1);
     if (clickedPiece === '') {
       setClickedPiece(value);
       return;
     }
 
     if (clickedPiece === value) {
-      console.log('we have a winner');
+      dispatch(incrementPlayerScore());
+    } else {
+      dispatch(nextTurn());
     }
 
     setClickedPiece('');
@@ -38,7 +45,7 @@ const GameBoard = () => {
       <header>
         <img src={darkLogo} alt="Game logo" />
         <div>
-          <button onClick={resetGame}>Reset</button>
+          <button onClick={startNewGame}>Reset</button>
           <button onClick={newGame}>New Game</button>
         </div>
       </header>
@@ -55,7 +62,7 @@ const GameBoard = () => {
 
       <section>
         {state.players.length === 1 ? (
-          <SinglePlayerScore />
+          <SinglePlayerScore moves={movesMade} />
         ) : (
           <MultiplePlayerScore />
         )}
