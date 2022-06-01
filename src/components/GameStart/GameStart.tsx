@@ -32,8 +32,6 @@ const GameStart = () => {
     }
     players[0].currentTurn = true;
 
-    console.log(players);
-
     const newGameConfig: GameInformation = {
       gameType: gameType,
       numOfPlayers: numPlayers,
