@@ -13,6 +13,7 @@ import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
   const [movesMade, setMovesMade] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<string>('');
   const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
@@ -24,10 +25,11 @@ const GameBoard = () => {
     console.log('reseting game');
   };
 
-  const clickPiece = (value: number | string) => {
+  const clickPiece = (value: number | string, i: string, j: string) => {
     setMovesMade(movesMade + 1);
     if (clickedPiece === '') {
       setClickedPiece(value);
+      setCurrentIndex(`${i},${j}`);
       return;
     }
 
@@ -38,6 +40,7 @@ const GameBoard = () => {
     }
 
     setClickedPiece('');
+    setCurrentIndex('');
   };
 
   return (
@@ -56,6 +59,8 @@ const GameBoard = () => {
             boardSize={state.boardSize}
             gameType={state.gameType}
             clickPiece={clickPiece}
+            currentTileValue={clickedPiece}
+            currentIndex={currentIndex}
           />
         )}
       </section>
