@@ -9,11 +9,13 @@ import darkLogo from '../../assets/logo-dark.svg';
 import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
 import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
+import { TileValueHashMap } from '../../types/game-board-types';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
   const [movesMade, setMovesMade] = useState(0);
   const [currentIndex, setCurrentIndex] = useState<string>('');
+  const [matchedValues, setMatchedValues] = useState<TileValueHashMap>({});
   const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
@@ -35,6 +37,9 @@ const GameBoard = () => {
 
     if (clickedPiece === value) {
       dispatch(incrementPlayerScore());
+      const currentMatchedValues = { ...matchedValues };
+      currentMatchedValues[value] = true;
+      setMatchedValues(currentMatchedValues);
     } else {
       dispatch(nextTurn());
     }
@@ -59,8 +64,8 @@ const GameBoard = () => {
             boardSize={state.boardSize}
             gameType={state.gameType}
             clickPiece={clickPiece}
-            currentTileValue={clickedPiece}
             currentIndex={currentIndex}
+            matchedValues={matchedValues}
           />
         )}
       </section>

@@ -1,23 +1,22 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import GameTile from './GameTile';
 import createRandomNums from '../../utils/create-random-nums';
+import { TileValueHashMap } from '../../types/game-board-types';
 
 interface GameTilesProps {
   boardSize: '4x4' | '6x6';
   gameType: 'numbers' | 'icons';
   clickPiece: (value: string | number, i: string, j: string) => void;
-  currentTileValue: string | number;
+  matchedValues: TileValueHashMap;
   currentIndex: string;
 }
-
-type TileValueHashMap = { [K: string]: boolean };
 
 const GameTilesWrapper = ({
   boardSize,
   gameType,
   clickPiece,
-  currentTileValue,
   currentIndex,
+  matchedValues,
 }: GameTilesProps) => {
   const [tileValues, setTileValues] = useState<number[][]>([]);
   const [resetGame, setResetGame] = useState<boolean>(true);
@@ -29,12 +28,6 @@ const GameTilesWrapper = ({
       setResetGame(false);
     } else return;
   }, [resetGame]);
-
-  const disableTile = (index: string) => {
-    if (currentIndex == index) {
-      return true;
-    } else return false;
-  };
 
   const renderGameTiles = (): Array<ReactNode> => {
     if (gameType === 'numbers') return renderNumberTiles();
@@ -51,9 +44,10 @@ const GameTilesWrapper = ({
             key={`${i},${j}`}
             value={tileValues[i][j]}
             clickPiece={clickPiece}
-            disableButton={disableTile(`${i},${j}`)}
             indexOne={`${i}`}
             indexTwo={`${j}`}
+            currentSelectedIndex={currentIndex}
+            matchedValuesHash={matchedValues}
           />
         );
       }
