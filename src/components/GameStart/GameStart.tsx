@@ -42,7 +42,7 @@ const GameStart = () => {
   };
 
   return (
-    <div>
+    <div data-testid="gameStart">
       <header>
         <img src={whiteLogo} alt="title header" />
       </header>
