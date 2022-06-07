@@ -42,7 +42,7 @@ const GameStart = () => {
   };
 
   return (
-    <div>
+    <div data-testid="gameStart">
       <header>
         <img src={whiteLogo} alt="title header" />
       </header>
@@ -59,6 +59,7 @@ const GameStart = () => {
                   name="gameType"
                   checked={gameType === 'numbers' ? true : false}
                   onChange={() => setGameType('numbers')}
+                  data-testid="gameTypeNumber"
                 />
               </label>
 
@@ -67,7 +68,9 @@ const GameStart = () => {
                 <input
                   type="radio"
                   name="gameType"
+                  checked={gameType === 'icons' ? true : false}
                   onChange={() => setGameType('icons')}
+                  data-testid="gameTypeIcon"
                 />
               </label>
             </div>
@@ -97,6 +100,7 @@ const GameStart = () => {
                   name="gridSize"
                   checked={gridSize === '4x4' ? true : false}
                   onChange={() => setGridSize('4x4')}
+                  data-testid="gameGridSizeFour"
                 />
               </label>
               <label>
@@ -105,6 +109,7 @@ const GameStart = () => {
                   type="radio"
                   name="gridSize"
                   onChange={() => setGridSize('6x6')}
+                  data-testid="gameGridSizeSix"
                 />
               </label>
             </div>
