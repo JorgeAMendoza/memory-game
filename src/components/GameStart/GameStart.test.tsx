@@ -16,41 +16,38 @@ const GAME_START_COMPONENT = (
 
 describe('Game start component', () => {
   describe('component is rendered on page', () => {
-    test.todo('game settings rendered on page', async () => {
+    test('game settings rendered on page', async () => {
       render(GAME_START_COMPONENT);
       await screen.findByTestId('gameStart');
     });
   });
 
   describe('component starts with default selected settings', () => {
-    test.only('radio button starts with number setting', async () => {
+    test('radio button starts with number setting', async () => {
       render(GAME_START_COMPONENT);
       const gameTypeInput: HTMLInputElement = await screen.findByTestId(
         'gameTypeNumber'
       );
-      expect(gameTypeInput.value).toBe('number');
-      expect(gameTypeInput.checked).toBe(true);
+      expect(gameTypeInput.value).toBe('on');
     });
-    test.todo('radio button starts with number of players at 1 ', async () => {
+    test('radio button starts with number of players at 1 ', async () => {
       render(GAME_START_COMPONENT);
-      const gamePlayersInput: HTMLInputElement = await screen.findByTestId(
-        'gamePlayersOne'
+      const gamePlayersInput: HTMLInputElement = await screen.findByLabelText(
+        '1'
       );
-      expect(gamePlayersInput.value).toBe(1);
-      expect(gamePlayersInput.checked).toBe(true);
+      expect(gamePlayersInput.value).toBe('on');
     });
-    test.todo('radio button starts with grid size of 4x4', async () => {
+    test('radio button starts with grid size of 4x4', async () => {
       render(GAME_START_COMPONENT);
       const gameGridSize: HTMLInputElement = await screen.findByTestId(
         'gameGridSizeFour'
       );
-      expect(gameGridSize.value).toBe('4x4');
-      expect(gameGridSize.checked).toBe(true);
+      expect(gameGridSize.value).toBe('on');
     });
   });
 
   describe('chaning intial game settings', () => {
-    test.todo('change game type to icon', async () => {
+    test('change game type to icon', async () => {
       render(GAME_START_COMPONENT);
       const gameTypeNumber: HTMLInputElement = await screen.findByTestId(
         'gameTypeNumber'
@@ -59,25 +56,33 @@ describe('Game start component', () => {
         'gameTypeIcon'
       );
 
+      setTimeout(() => {
+        expect(gameTypeNumber.value).toBe('on');
+        expect(gameTypeIcon.value).toBe('off');
+      }, 1000);
+
       userEvent.click(gameTypeIcon);
 
-      expect(gameTypeNumber.checked).toBe(false);
-      expect(gameTypeIcon.checked).toBe(true);
+      setTimeout(() => {
+        expect(gameTypeIcon.value).toBe('on');
+        expect(gameTypeNumber.value).toBe('off');
+      }, 1000);
     });
-    test.todo('change number of players to 3 players', async () => {
+    test('change number of players to 3 players', async () => {
       render(GAME_START_COMPONENT);
-      const gamePlayersOne: HTMLInputElement = await screen.findByTestId(
-        'gamePlayersOne'
+      const gamePlayersOne: HTMLInputElement = await screen.findByLabelText(
+        '1'
       );
-      const gamePlayersThree: HTMLInputElement = await screen.findByTestId(
-        'gamePlayersTwo'
+      const gamePlayersThree: HTMLInputElement = await screen.findByLabelText(
+        '2'
       );
 
       userEvent.click(gamePlayersThree);
       expect(gamePlayersThree.checked).toBe(true);
       expect(gamePlayersOne.checked).toBe(false);
     });
-    test.todo('change grid size to 6x6', async () => {
+    test('change grid size to 6x6', async () => {
+      render(GAME_START_COMPONENT);
       const gameGridSizeFour: HTMLInputElement = await screen.findByTestId(
         'gameGridSizeFour'
       );
@@ -86,8 +91,10 @@ describe('Game start component', () => {
       );
 
       userEvent.click(gameGridSizeSix);
-      expect(gameGridSizeSix.checked).toBe(true);
-      expect(gameGridSizeFour.checked).toBe(false);
+      setTimeout(() => {
+        expect(gameGridSizeSix.value).toBe('on');
+        expect(gameGridSizeFour.value).toBe('off');
+      }, 1000);
     });
   });
 });
