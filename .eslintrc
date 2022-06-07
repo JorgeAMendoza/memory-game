@@ -4,12 +4,16 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:cypress/recommended",
         "prettier"
     ],
-    "plugins": ["@typescript-eslint", "react"],
+    "plugins": ["@typescript-eslint", "react", "cypress"],
+    // "ignorePatterns": ["*.spec.ts"],
     "env": {
       "browser": true,
-      "es6": true
+      "es6": true,
+      "jest": true,
+      "cypress/globals": true
     },
     "rules": {
       "@typescript-eslint/semi": ["error"],
@@ -32,7 +36,7 @@
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-      "project": "./tsconfig.json"
+      "project": "./tsconfig.eslint.json"
     }
   }
   

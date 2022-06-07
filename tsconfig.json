@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": ["cypress", "node"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -23,6 +24,6 @@
     "useUnknownInCatchVariables": false,
   },
   "include": [
-    "src"
-  ]
+    "src",
+  ],
 }
