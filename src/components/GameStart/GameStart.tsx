@@ -115,7 +115,7 @@ const GameStart = () => {
             </div>
           </section>
 
-          <button>Start Game</button>
+          <button data-testid="gameStartButton">Start Game</button>
         </form>
       </main>
     </div>

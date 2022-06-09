@@ -49,7 +49,7 @@ const GameBoard = () => {
   };
 
   return (
-    <main>
+    <main data-testid="gameBoard">
       <header>
         <img src={darkLogo} alt="Game logo" />
         <div>
