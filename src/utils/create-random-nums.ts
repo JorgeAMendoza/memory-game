@@ -20,6 +20,15 @@ const createRandomNums = (gridSize: '4x4' | '6x6') => {
     }
   }
 
+  if (process.env.NODE_ENV === 'development') {
+    for (let i = 0; i < gridRowLength; i++) {
+      for (let j = 0; j < gridColLength; j++) {
+        randomMatrix[i][j] = targetNumSet.shift() as number;
+      }
+    }
+    return randomMatrix;
+  }
+
   for (let i = 0; i < gridRowLength; i++) {
     for (let j = 0; j < gridColLength; j++) {
       const randomIndex = Math.floor(Math.random() * (targetNumSet.length - 1));

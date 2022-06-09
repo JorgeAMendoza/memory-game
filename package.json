@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src/**/*.{ts,tsx}"
+    "lint": "eslint ./src/**/*.{ts,tsx}",
+    "cypress:open": "cypress open"
   },
   "browserslist": {
     "production": [
@@ -45,6 +46,7 @@
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
+    "cross-env": "^7.0.3",
     "cypress": "^9.6.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react": "^1.1.7",
