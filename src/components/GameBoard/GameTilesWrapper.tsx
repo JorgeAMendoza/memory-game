@@ -1,10 +1,9 @@
 import { ReactNode, useEffect, useState } from 'react';
 import NumberGameTile from './NumberGameTile';
 import IconGameTile from './IconGameTile';
-import createRandomNums from '../../utils/create-random-nums';
 import { TileValueHashMap } from '../../types/game-board-types';
 import { gameIconValues } from '../../types/general-types';
-import createRandomIcons from '../../utils/create-random-icons';
+import createRandomValues from '../../utils/create-random-values';
 
 interface GameTilesProps {
   boardSize: '4x4' | '6x6';
@@ -30,8 +29,8 @@ const GameTilesWrapper = ({
     if (resetGame) {
       const randomValues =
         gameType === 'numbers'
-          ? createRandomNums(boardSize)
-          : createRandomIcons(boardSize);
+          ? createRandomValues('numbers', boardSize)
+          : createRandomValues('icons', boardSize);
       setTileValues(randomValues);
       setResetGame(false);
     } else return;
