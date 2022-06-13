@@ -1,6 +1,6 @@
 import { TileValueHashMap } from '../../types/game-board-types';
 
-interface GameTileProps {
+interface NumberGameTileProps {
   value: number | string;
   clickPiece: (value: string | number, i: string, j: string) => void;
   indexOne: string;
@@ -9,14 +9,14 @@ interface GameTileProps {
   matchedValuesHash: TileValueHashMap;
 }
 
-const GameTile = ({
+const NumberGameTile = ({
   value,
   clickPiece,
   indexOne,
   indexTwo,
   currentSelectedIndex,
   matchedValuesHash,
-}: GameTileProps) => {
+}: NumberGameTileProps) => {
   const disableTile = () => {
     if (value in matchedValuesHash) return true;
     else if (`${indexOne},${indexTwo}` === currentSelectedIndex) return true;
@@ -34,4 +34,4 @@ const GameTile = ({
   );
 };
 
-export default GameTile;
+export default NumberGameTile;

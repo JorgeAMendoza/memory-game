@@ -1,7 +1,10 @@
 import { ReactNode, useEffect, useState } from 'react';
-import GameTile from './GameTile';
+import NumberGameTile from './NumberGameTile';
+import IconGameTile from './IconGameTile';
 import createRandomNums from '../../utils/create-random-nums';
 import { TileValueHashMap } from '../../types/game-board-types';
+import { gameIconValues } from '../../types/general-types';
+import createRandomIcons from '../../utils/create-random-icons';
 
 interface GameTilesProps {
   boardSize: '4x4' | '6x6';
@@ -18,12 +21,17 @@ const GameTilesWrapper = ({
   currentIndex,
   matchedValues,
 }: GameTilesProps) => {
-  const [tileValues, setTileValues] = useState<number[][]>([]);
+  const [tileValues, setTileValues] = useState<number[][] | gameIconValues[][]>(
+    []
+  );
   const [resetGame, setResetGame] = useState<boolean>(true);
 
   useEffect(() => {
     if (resetGame) {
-      const randomValues = createRandomNums(boardSize);
+      const randomValues =
+        gameType === 'numbers'
+          ? createRandomNums(boardSize)
+          : createRandomIcons(boardSize);
       setTileValues(randomValues);
       setResetGame(false);
     } else return;
@@ -40,7 +48,7 @@ const GameTilesWrapper = ({
     for (let i = 0; i < tileValues.length; i++) {
       for (let j = 0; j < tileValues[i].length; j++) {
         gameTiles.push(
-          <GameTile
+          <NumberGameTile
             key={`${i},${j}`}
             value={tileValues[i][j]}
             clickPiece={clickPiece}
@@ -57,6 +65,21 @@ const GameTilesWrapper = ({
 
   const renderIconTiles = (): Array<ReactNode> => {
     const gameTiles: Array<ReactNode> = [];
+    for (let i = 0; i < tileValues.length; i++) {
+      for (let j = 0; j < tileValues[i].length; j++) {
+        gameTiles.push(
+          <IconGameTile
+            key={`${i},${j}`}
+            value={tileValues[i][j]}
+            clickPiece={clickPiece}
+            indexOne={`${i}`}
+            indexTwo={`${j}`}
+            currentSelectedIndex={currentIndex}
+            matchedValuesHash={matchedValues}
+          />
+        );
+      }
+    }
     return gameTiles;
   };
   return <div>{tileValues.length !== 0 ? renderGameTiles() : null}</div>;
