@@ -4,6 +4,7 @@ import {
   resetGame,
   incrementPlayerScore,
   nextTurn,
+  resetPlayerScores,
 } from '../../redux/game-reducer';
 import darkLogo from '../../assets/logo-dark.svg';
 import GameTilesWrapper from './GameTilesWrapper';
@@ -24,7 +25,11 @@ const GameBoard = () => {
   };
 
   const startNewGame = () => {
-    console.log('reseting game');
+    setMatchedValues({});
+    setMovesMade(0);
+
+    if (state.players.length === 1) console.log('resetting the time to 0');
+    else dispatch(resetPlayerScores());
   };
 
   const clickPiece = (value: number | string, i: string, j: string) => {

@@ -26,7 +26,11 @@ const gameSlice = createSlice({
       else state.players[currentPlayer + 1].currentTurn = true;
     },
     resetPlayerScores(state) {
-      state.players.map((player) => (player.score = 0));
+      state.players.map((player) => {
+        player.score = 0;
+        if (player.name === '1') player.currentTurn = true;
+        else player.currentTurn = false;
+      });
     },
     resetGame(_state) {
       const newGameConfig: GameInformation = {} as GameInformation;
