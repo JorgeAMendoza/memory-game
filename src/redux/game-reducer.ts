@@ -32,7 +32,7 @@ const gameSlice = createSlice({
         else player.currentTurn = false;
       });
     },
-    resetGame(_state) {
+    setupNewGame(_state) {
       const newGameConfig: GameInformation = {} as GameInformation;
       return newGameConfig;
     },
@@ -43,7 +43,7 @@ export const {
   setupGame,
   incrementPlayerScore,
   resetPlayerScores,
-  resetGame,
+  setupNewGame,
   nextTurn,
 } = gameSlice.actions;
 

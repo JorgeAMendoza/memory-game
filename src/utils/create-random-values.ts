@@ -77,7 +77,6 @@ const createRandomValues = (gameType: gameTypeArg, boardSize: boardSizeArg) => {
         randomMatrix[i][j] = finalTargetSet.shift() as number | gameIconValues;
       }
     }
-    console.log(randomMatrix);
     return randomMatrix;
   }
 
@@ -91,7 +90,6 @@ const createRandomValues = (gameType: gameTypeArg, boardSize: boardSizeArg) => {
       finalTargetSet.splice(randomIndex, 1);
     }
   }
-  console.log(randomMatrix);
   return randomMatrix;
 };
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
-  resetGame,
+  setupNewGame,
   incrementPlayerScore,
   nextTurn,
   resetPlayerScores,
@@ -11,24 +11,30 @@ import GameTilesWrapper from './GameTilesWrapper';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
 import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
 import { TileValueHashMap } from '../../types/game-board-types';
+import SinglePlayerModal from '../SinglePlayerModal/SinglePlayerModal';
+import MultiplePlayerModal from '../MultiplePlayerModal/MultiplePlayerModal';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
   const [movesMade, setMovesMade] = useState(0);
   const [currentIndex, setCurrentIndex] = useState<string>('');
   const [matchedValues, setMatchedValues] = useState<TileValueHashMap>({});
+  const [showGameOverModal, setShowGameOverModal] = useState(false);
   const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
+  // TODO: Create state for time and use effect to initialize time, maybe its own component?
 
   const newGame = () => {
-    dispatch(resetGame());
+    dispatch(setupNewGame());
   };
 
-  const startNewGame = () => {
+  const resetGame = () => {
     setMatchedValues({});
     setMovesMade(0);
+    setShowGameOverModal(false);
 
-    if (state.players.length === 1) console.log('resetting the time to 0');
+    if (state.players.length === 1)
+      console.log('resetting the time to 0'); //TODO: Reset Time
     else dispatch(resetPlayerScores());
   };
 
@@ -44,6 +50,13 @@ const GameBoard = () => {
       dispatch(incrementPlayerScore());
       const currentMatchedValues = { ...matchedValues };
       currentMatchedValues[value] = true;
+
+      const currentMatchCount = Object.keys(currentMatchedValues).length;
+      if (state.boardSize === '4x4' && currentMatchCount === 8)
+        setShowGameOverModal(true);
+      else if (state.boardSize === '6x6' && currentMatchCount === 18)
+        setShowGameOverModal(true);
+
       setMatchedValues(currentMatchedValues);
     } else {
       dispatch(nextTurn());
@@ -53,12 +66,25 @@ const GameBoard = () => {
     setCurrentIndex('');
   };
 
+  const renderGameOverModal = () => {
+    if (state.numOfPlayers === 1)
+      return (
+        <SinglePlayerModal
+          movesMade={movesMade}
+          resetGame={resetGame}
+          newGame={newGame}
+        />
+      );
+    else return <MultiplePlayerModal resetGame={resetGame} newGame={newGame} />;
+  };
+
   return (
     <main data-testid="gameBoard">
+      {showGameOverModal && renderGameOverModal()}
       <header>
         <img src={darkLogo} alt="Game logo" />
         <div>
-          <button onClick={startNewGame}>Reset</button>
+          <button onClick={resetGame}>Reset</button>
           <button onClick={newGame}>New Game</button>
         </div>
       </header>
