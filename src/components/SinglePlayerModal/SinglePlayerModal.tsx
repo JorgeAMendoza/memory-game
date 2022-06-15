@@ -1,4 +1,16 @@
-const SinglePlayerModal = () => {
+import { useAppDispatch } from '../../hooks';
+
+interface SinglePlayerModalProps {
+  movesMade: number;
+  resetGame: () => void;
+  newGame: () => void;
+}
+
+const SinglePlayerModal = ({
+  movesMade,
+  resetGame,
+  newGame,
+}: SinglePlayerModalProps) => {
   return (
     <div>
       <div>
@@ -13,13 +25,13 @@ const SinglePlayerModal = () => {
         </div>
         <div>
           <p>Moves Taken</p>
-          <p>39 Moves</p>
+          <p>{movesMade}</p>
         </div>
       </div>
 
       <div>
-        <button>Restart</button>
-        <button>Setup New Game</button>
+        <button onClick={resetGame}>Restart</button>
+        <button onClick={newGame}>Setup New Game</button>
       </div>
     </div>
   );

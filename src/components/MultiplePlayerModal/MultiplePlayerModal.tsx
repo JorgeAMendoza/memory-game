@@ -1,4 +1,15 @@
-const MultiplePlayerModal = () => {
+import { useAppSelector } from '../../hooks';
+
+interface MultiplePlayerModalProps {
+  resetGame: () => void;
+  newGame: () => void;
+}
+
+const MultiplePlayerModal = ({
+  resetGame,
+  newGame,
+}: MultiplePlayerModalProps) => {
+  const playerData = useAppSelector((state) => state.players);
   return (
     <div>
       <div>
@@ -14,8 +25,8 @@ const MultiplePlayerModal = () => {
       </div>
 
       <div>
-        <button>Restart</button>
-        <button>Setup New Game</button>
+        <button onClick={resetGame}>Restart</button>
+        <button onClick={newGame}>Setup New Game</button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import GameInformation, { Player } from '../types/game-context-types';
-import gameReducer, { setupGame, resetGame } from './game-reducer';
+import gameReducer, { setupGame, setupNewGame } from './game-reducer';
 
 const playerOne: Player = {
   name: '1',
@@ -34,6 +34,6 @@ describe('testing react redux implementation', () => {
 
   test('redux restarts the game', () => {
     const previousState = gameInformation;
-    expect(gameReducer(previousState, resetGame())).toStrictEqual({});
+    expect(gameReducer(previousState, setupNewGame())).toStrictEqual({});
   });
 });
