@@ -13,6 +13,7 @@ import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
 import { TileValueHashMap } from '../../types/game-board-types';
 import SinglePlayerModal from '../SinglePlayerModal/SinglePlayerModal';
 import MultiplePlayerModal from '../MultiplePlayerModal/MultiplePlayerModal';
+import modalPlayerData from '../../utils/modal-player-data';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
@@ -75,7 +76,14 @@ const GameBoard = () => {
           newGame={newGame}
         />
       );
-    else return <MultiplePlayerModal resetGame={resetGame} newGame={newGame} />;
+    else
+      return (
+        <MultiplePlayerModal
+          resetGame={resetGame}
+          newGame={newGame}
+          playerData={modalPlayerData(state.players)}
+        />
+      );
   };
 
   return (

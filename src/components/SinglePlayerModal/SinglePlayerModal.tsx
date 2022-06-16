@@ -1,5 +1,3 @@
-import { useAppDispatch } from '../../hooks';
-
 interface SinglePlayerModalProps {
   movesMade: number;
   resetGame: () => void;

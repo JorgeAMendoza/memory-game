@@ -1,27 +1,34 @@
-import { useAppSelector } from '../../hooks';
+import { FinalPlayerData } from '../../types/general-types';
 
 interface MultiplePlayerModalProps {
   resetGame: () => void;
   newGame: () => void;
+  playerData: FinalPlayerData;
 }
 
 const MultiplePlayerModal = ({
   resetGame,
   newGame,
+  playerData,
 }: MultiplePlayerModalProps) => {
-  const playerData = useAppSelector((state) => state.players);
   return (
     <div>
       <div>
-        <h2>Player 3 Wins!</h2>
+        <h2>{playerData.modalMessage}</h2>
         <p>Game Over! Here are the results!</p>
       </div>
 
       <div>
-        <div>
-          <p>Player 3 (Winner)</p>
-          <p>8 Pairs</p>
-        </div>
+        <ul>
+          {playerData.players.map((player) => (
+            <li key={player.name}>
+              <p>
+                Player {player.name} {player.isWinner && '(Winner!)'}
+              </p>
+              <p>{player.score} Pairs</p>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div>
