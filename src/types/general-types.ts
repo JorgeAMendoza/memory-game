@@ -17,3 +17,14 @@ export type gameIconValues =
   | 'robot'
   | 'snowflake'
   | 'sun';
+
+// for multiple player modal
+interface PlayerModalData {
+  name: string;
+  score: number;
+  isWinner: boolean;
+}
+export interface FinalPlayerData {
+  modalMessage: string;
+  players: PlayerModalData[];
+}
