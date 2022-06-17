@@ -21,9 +21,10 @@ const GameBoard = () => {
   const [currentIndex, setCurrentIndex] = useState<string>('');
   const [matchedValues, setMatchedValues] = useState<TileValueHashMap>({});
   const [showGameOverModal, setShowGameOverModal] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+  const [countUp, setCountUp] = useState(true);
   const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-  // TODO: Create state for time and use effect to initialize time, maybe its own component?
 
   const newGame = () => {
     dispatch(setupNewGame());
@@ -33,9 +34,9 @@ const GameBoard = () => {
     setMatchedValues({});
     setMovesMade(0);
     setShowGameOverModal(false);
+    setCountUp(true);
 
-    if (state.players.length === 1)
-      console.log('resetting the time to 0'); //TODO: Reset Time
+    if (state.players.length === 1) setSeconds(-1);
     else dispatch(resetPlayerScores());
   };
 
@@ -53,10 +54,13 @@ const GameBoard = () => {
       currentMatchedValues[value] = true;
 
       const currentMatchCount = Object.keys(currentMatchedValues).length;
-      if (state.boardSize === '4x4' && currentMatchCount === 8)
+      if (state.boardSize === '4x4' && currentMatchCount === 8) {
         setShowGameOverModal(true);
-      else if (state.boardSize === '6x6' && currentMatchCount === 18)
+        setCountUp(false);
+      } else if (state.boardSize === '6x6' && currentMatchCount === 18) {
         setShowGameOverModal(true);
+        setCountUp(false);
+      }
 
       setMatchedValues(currentMatchedValues);
     } else {
@@ -74,6 +78,7 @@ const GameBoard = () => {
           movesMade={movesMade}
           resetGame={resetGame}
           newGame={newGame}
+          seconds={seconds}
         />
       );
     else
@@ -111,7 +116,12 @@ const GameBoard = () => {
 
       <section>
         {state.players.length === 1 ? (
-          <SinglePlayerScore moves={movesMade} />
+          <SinglePlayerScore
+            moves={movesMade}
+            seconds={seconds}
+            setSeconds={setSeconds}
+            countUp={countUp}
+          />
         ) : (
           <MultiplePlayerScore />
         )}
