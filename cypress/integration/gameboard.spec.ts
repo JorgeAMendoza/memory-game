@@ -21,6 +21,15 @@ describe('game board rendered with number game, one player, and 4x4 grid', () =>
     // check to see that its value is 1.
   });
 
+  it('game timer starts at 0:00', () => {
+    cy.get(`[data-testid="gameTime"]`).contains('0:00');
+  });
+
+  it('after 5 seconds, game timer is at 0:05', () => {
+    setTimeout(() => {
+      cy.get(`[data-testid="gameTime"]`).contains('0:05');
+    });
+  });
   it('three moves counted', () => {
     // get three tile pieces
     // click them
