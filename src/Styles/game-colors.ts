@@ -18,7 +18,7 @@ const colors = {
 };
 
 const gameColors = {
-  backgroundColor: colors.blue.dark, //background color of the application
+  backgroundColor: colors.blue.darker, //background color of the application
   blueButton: {
     background: colors.blue.dark,
     backgroundDisabled: colors.blue.greyish,
@@ -54,6 +54,9 @@ const gameColors = {
     textColorLight: colors.blue.pale,
     textColorDark: colors.blue.dark,
     textColorCurrent: colors.blue.darker,
+  },
+  gameStart: {
+    selectionText: colors.blue.pale,
   },
   gameOverModal: {
     background: colors.white.light,

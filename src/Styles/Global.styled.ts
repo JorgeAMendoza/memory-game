@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import gameColors from './game-colors';
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -14,17 +15,14 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.4;
   }
   body{
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
     font-size: 1.6rem;
     min-height: 100vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1A2A33;
+    background-color: ${gameColors.backgroundColor};
     position:relative;
     #root{
       width: 90%;
-      max-width: 46rem;
+      max-width: 60rem;
       margin: 0 auto;
     }
   } 
