@@ -130,3 +130,50 @@ describe('various game board functionality', () => {
     // ensure that both are disabled
   });
 });
+
+describe('game board header menu and buttons on mobile view', () => {
+  beforeEach(() => {
+    cy.visit('/');
+    cy.viewport(390, 844);
+    cy.get(`[data-testid="gameStartButton"]`).click();
+    cy.get('[data-testid="mobileMenuButton"]').as('mobileMenuButton');
+  });
+
+  it('mobile menu button is rendered on a mobile screen view', () => {
+    cy.get('@mobileMenuButton').should('exist');
+  });
+
+  it('mobile menu is rendered with button click', () => {
+    cy.get('@mobileMenuButton').click();
+    cy.get('[data-testid="mobileMenu"]').should('exist');
+    cy.get('[data-testid="restartButtonMobile"]').should('exist');
+    cy.get('[data-testid="newGameButtonMobile"]').should('exist');
+    cy.get('[data-testid="resumeGameButtonMobile"]').should('exist');
+  });
+
+  it('restart button resets the game', () => {
+    cy.get('@mobileMenuButton').click();
+    cy.get('[data-testid="restartButtonMobile"]').click();
+    cy.get('[data-testid="mobileMenu"]').should('not.exist');
+    cy.get('[data-testid="movesMade"]').contains('0');
+    cy.get('[data-testid="time"]').contains('0:00');
+  });
+
+  it('newgame button begins new game', () => {
+    cy.get('@mobileMenuButton').click();
+    cy.get('[data-testid="newGameButtonMobile"]').click();
+    cy.get('[data-testid="mobileMenu"]').should('not.exist');
+    cy.get('@mobileMenuButton').should('not.exist');
+    cy.get('[data-testid="gameStart"]').should('exist');
+  });
+
+  it('resume game button resumes the game', () => {
+    cy.get('@mobileMenuButton');
+    // get gmae tiles
+    // click the first one
+    // ensure that moves made is one
+    // click the menu button
+    // click resume game
+    // ensure that the first button is disabled, and moves made is still 1 (do not worry about time)
+  });
+});
