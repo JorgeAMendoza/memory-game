@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useMediaQuery } from 'react-responsive';
 import {
   setupNewGame,
   incrementPlayerScore,
@@ -14,6 +15,7 @@ import { TileValueHashMap } from '../../types/game-board-types';
 import SinglePlayerModal from '../SinglePlayerModal/SinglePlayerModal';
 import MultiplePlayerModal from '../MultiplePlayerModal/MultiplePlayerModal';
 import modalPlayerData from '../../utils/modal-player-data';
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
@@ -23,8 +25,10 @@ const GameBoard = () => {
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [countUp, setCountUp] = useState(true);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
+  const isMobile = useMediaQuery({ query: '(max-width:768px)' });
 
   const newGame = () => {
     dispatch(setupNewGame());
@@ -35,6 +39,7 @@ const GameBoard = () => {
     setMovesMade(0);
     setShowGameOverModal(false);
     setCountUp(true);
+    setMobileMenu(false);
 
     if (state.players.length === 1) setSeconds(-1);
     else dispatch(resetPlayerScores());
@@ -93,13 +98,23 @@ const GameBoard = () => {
 
   return (
     <main data-testid="gameBoard">
+      {mobileMenu && (
+        <MobileMenu
+          restartGame={resetGame}
+          newGame={newGame}
+          setMobileMenu={setMobileMenu}
+        />
+      )}
       {showGameOverModal && renderGameOverModal()}
       <header>
         <img src={darkLogo} alt="Game logo" />
-        <div>
-          <button onClick={resetGame}>Reset</button>
-          <button onClick={newGame}>New Game</button>
-        </div>
+        {isMobile && <button onClick={() => setMobileMenu(true)}>Menu</button>}
+        {!isMobile && (
+          <div>
+            <button onClick={resetGame}>Reset</button>
+            <button onClick={newGame}>New Game</button>
+          </div>
+        )}
       </header>
 
       <section>
