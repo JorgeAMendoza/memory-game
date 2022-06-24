@@ -3,6 +3,7 @@ import gameColors from '../../Styles/game-colors';
 import device from '../../Styles/device';
 
 export const GameStartStyled = styled.div`
+  background-color: ${gameColors.backgroundColor.gameStart};
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,15 +13,18 @@ export const GameStartStyled = styled.div`
 `;
 
 export const MenuContainer = styled.main`
+  width: 90%;
+  max-width: 64rem;
+  margin: 0 auto
   position: relative;
   border: 1px solid white;
   width: 100%;
   background-color: #fff;
   padding: 1.5em;
   border-radius: 15px;
+  position:relative;
 
   @media screen and ${device.tablet} {
-    border: 1px solid black;
     padding: 2.5em;
   }
 

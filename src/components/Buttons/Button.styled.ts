@@ -3,7 +3,7 @@ import gameColors from '../../Styles/game-colors';
 
 const Button = styled.button`
   text-decoration: none;
-  padding: 0.4em 1em;
+  padding: 0.5em 1em;
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;

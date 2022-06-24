@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import gameColors from './game-colors';
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -18,13 +17,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Atkinson Hyperlegible', sans-serif;
     font-size: 1.6rem;
     min-height: 100vh;
-    background-color: ${gameColors.backgroundColor};
     position:relative;
-    #root{
-      width: 90%;
-      max-width: 60rem;
-      margin: 0 auto;
-    }
   } 
   img,svg {
     max-width: 100%;
