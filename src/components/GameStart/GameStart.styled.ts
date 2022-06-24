@@ -6,15 +6,13 @@ export const GameStartStyled = styled.div`
   background-color: ${gameColors.backgroundColor.gameStart};
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
 `;
 
 export const MenuContainer = styled.main`
-  width: 90%;
-  max-width: 64rem;
+  width: 90% !important;
+  max-width:64rem;
   margin: 0 auto
   position: relative;
   border: 1px solid white;

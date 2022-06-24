@@ -9,7 +9,7 @@ export const GameBoardStyled = styled.main`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10rem;
+  justify-content: space-between;
 
   header {
     width: 90%;
