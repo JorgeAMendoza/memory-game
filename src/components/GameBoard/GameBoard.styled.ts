@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import gameColors from '../../Styles/game-colors';
+import device from '../../Styles/device';
 
 export const GameBoardStyled = styled.main`
   width: 100%;
@@ -11,6 +12,10 @@ export const GameBoardStyled = styled.main`
   flex-direction: column;
   justify-content: space-between;
 
+  @media screen and ${device.tablet} {
+    padding: 4em 0;
+  }
+
   header {
     width: 90%;
     max-width: 90rem;
@@ -21,6 +26,7 @@ export const GameBoardStyled = styled.main`
 
     button {
       width: 8ch;
+      padding: 0.75em 0;
     }
 
     img {

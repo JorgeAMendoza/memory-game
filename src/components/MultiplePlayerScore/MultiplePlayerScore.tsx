@@ -1,19 +1,26 @@
 import { useAppSelector } from '../../hooks';
-import PlayerScore from '../PlayerScore/PlayerScore';
+import {
+  MultiplePlayerScoreStyled,
+  PlayerScore,
+} from './MultiplePlayerScore.styled';
+import { useMediaQuery } from 'react-responsive';
+import device from '../../Styles/device';
 
 const MultiplePlayerScore = () => {
+  const isTablet = useMediaQuery({
+    query: device.tablet,
+  });
   const players = useAppSelector((state) => state.players);
   return (
-    <section>
+    <MultiplePlayerScoreStyled>
       {players.map((player) => (
-        <PlayerScore
-          key={player.name}
-          name={player.name}
-          score={player.score}
-          currentTurn={player.currentTurn}
-        />
+        <PlayerScore key={player.name} currentTurn={player.currentTurn}>
+          <p>{isTablet ? `Player ${player.name}` : `P${player.name}`}</p>
+          <p>{player.score}</p>
+          {isTablet && player.currentTurn && <p>Current Turn</p>}
+        </PlayerScore>
       ))}
-    </section>
+    </MultiplePlayerScoreStyled>
   );
 };
 
