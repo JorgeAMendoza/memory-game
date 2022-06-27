@@ -99,7 +99,7 @@ const GameBoard = () => {
   };
 
   return (
-    <GameBoardStyled data-testid="gameBoard">
+    <GameBoardStyled mobileMenu={mobileMenu} data-testid="gameBoard">
       {mobileMenu && (
         <MobileMenu
           restartGame={resetGame}

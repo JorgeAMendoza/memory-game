@@ -76,6 +76,14 @@ const gameColors = {
     timeElapsedBackground: colors.white.greyish,
     singleGameStatsColor: colors.blue.paleLight,
   },
+  mobileMenu: {
+    background: colors.white.greyish,
+    restartButtonBackground: colors.orange.neon,
+    textColorLight: colors.white.light,
+    textColorDark: colors.blue.dark,
+    newGameBackground: colors.white.pale,
+    resumeGameBackground: colors.white.pale,
+  },
 };
 
 export default gameColors;

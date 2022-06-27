@@ -1,3 +1,6 @@
+import { MobileMenuStyled } from './MobileMenu.styled';
+import { OrangeButton, GreyButton } from '../Buttons/Button.styled';
+
 interface MobileMenuProps {
   restartGame: () => void;
   newGame: () => void;
@@ -10,11 +13,15 @@ const MobileMenu = ({
   setMobileMenu,
 }: MobileMenuProps) => {
   return (
-    <div>
-      <button onClick={restartGame}>restart</button>
-      <button onClick={newGame}>new game</button>
-      <button onClick={() => setMobileMenu(false)}>resume game</button>
-    </div>
+    <MobileMenuStyled>
+      <div>
+        <OrangeButton onClick={restartGame}>restart</OrangeButton>
+        <GreyButton onClick={newGame}>new game</GreyButton>
+        <GreyButton onClick={() => setMobileMenu(false)}>
+          resume game
+        </GreyButton>
+      </div>
+    </MobileMenuStyled>
   );
 };
 

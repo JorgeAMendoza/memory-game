@@ -3,7 +3,7 @@ import gameColors from '../../Styles/game-colors';
 
 const Button = styled.button`
   text-decoration: none;
-  padding: 0.5em 1em;
+  padding: 0.7em 1em;
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;
@@ -20,5 +20,15 @@ export const OrangeButton = styled(Button)`
 
   &:hover {
     background-color: ${gameColors.orangeButton.backgroundHover};
+  }
+`;
+
+export const GreyButton = styled(Button)`
+  background-color: ${gameColors.greyButton.background};
+  color: ${gameColors.greyButton.textColor};
+
+  &:hover {
+    background-color: ${gameColors.greyButton.backgroundHover};
+    color: ${gameColors.greyButton.textColorHover};
   }
 `;
