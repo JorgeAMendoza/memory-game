@@ -18,7 +18,7 @@ export const GameBoardStyled = styled.main`
 
   header {
     width: 90%;
-    max-width: 90rem;
+    max-width: 110rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;

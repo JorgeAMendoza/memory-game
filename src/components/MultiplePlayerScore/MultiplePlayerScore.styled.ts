@@ -4,18 +4,18 @@ import device from '../../Styles/device';
 
 export const MultiplePlayerScoreStyled = styled.section`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 3rem;
   text-align: center;
   width: 90%;
   margin: 0 auto;
-  max-width: 90rem;
+  max-width: 110rem;
 
   div {
     width: 100%;
     padding: 0.8em 0;
     border-radius: 10px;
-    position: relative; 
+    position: relative;
 
     @media screen and ${device.tablet} {
       display: flex;
@@ -23,6 +23,7 @@ export const MultiplePlayerScoreStyled = styled.section`
       justify-content: space-between;
       align-items: center;
       padding: 0.8em 1.2em;
+      width: 25%;
     }
 
     p:nth-child(1) {
@@ -52,6 +53,8 @@ interface PlayerScoreProps {
 }
 
 export const PlayerScore = styled.div<PlayerScoreProps>`
+  position: relative;
+  z-index: 1;
   background-color: ${({ currentTurn }) =>
     currentTurn
       ? `${gameColors.scoreCard.backgroundActive}`
@@ -81,6 +84,21 @@ export const PlayerScore = styled.div<PlayerScoreProps>`
     letter-spacing: 5px;
   }
 
-  /* now need to add the triangle here */
-  /* so how about we set it to be orange, but dependng in current turn, it will be transparent or not.  */
+  &:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 50px solid
+      ${({ currentTurn }) =>
+        currentTurn
+          ? `${gameColors.scoreCard.backgroundActive} `
+          : 'transparent'};
+    top: -25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
 `;
