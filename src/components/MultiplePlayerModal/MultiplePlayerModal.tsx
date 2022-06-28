@@ -1,4 +1,13 @@
 import { FinalPlayerData } from '../../types/general-types';
+import {
+  MultiplePlayerModalStyled,
+  MultipleModalHeader,
+  MultipleModalContainer,
+  PlayerScoreList,
+  PlayerScoreItem,
+  GameOverButtons,
+} from './MultiplePlayerModal.styled';
+import { OrangeButton, GreyButton } from '../Buttons/Button.styled';
 
 interface MultiplePlayerModalProps {
   resetGame: () => void;
@@ -12,30 +21,30 @@ const MultiplePlayerModal = ({
   playerData,
 }: MultiplePlayerModalProps) => {
   return (
-    <div>
-      <div>
-        <h2>{playerData.modalMessage}</h2>
-        <p>Game Over! Here are the results!</p>
-      </div>
+    <MultiplePlayerModalStyled>
+      <MultipleModalContainer>
+        <MultipleModalHeader>
+          <h2>{playerData.modalMessage}</h2>
+          <p>Game Over! Here are the results...</p>
+        </MultipleModalHeader>
 
-      <div>
-        <ul>
+        <PlayerScoreList>
           {playerData.players.map((player) => (
-            <li key={player.name}>
+            <PlayerScoreItem key={player.name} winner={player.isWinner}>
               <p>
                 Player {player.name} {player.isWinner && '(Winner!)'}
               </p>
               <p>{player.score} Pairs</p>
-            </li>
+            </PlayerScoreItem>
           ))}
-        </ul>
-      </div>
+        </PlayerScoreList>
 
-      <div>
-        <button onClick={resetGame}>Restart</button>
-        <button onClick={newGame}>Setup New Game</button>
-      </div>
-    </div>
+        <GameOverButtons>
+          <OrangeButton onClick={resetGame}>Restart</OrangeButton>
+          <GreyButton onClick={newGame}>Setup New Game</GreyButton>
+        </GameOverButtons>
+      </MultipleModalContainer>
+    </MultiplePlayerModalStyled>
   );
 };
 

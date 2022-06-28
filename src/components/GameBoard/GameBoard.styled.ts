@@ -4,6 +4,7 @@ import device from '../../Styles/device';
 
 interface GameBoardStyledProps {
   mobileMenu: boolean;
+  showGameOverModal: boolean;
 }
 
 export const GameBoardStyled = styled.main<GameBoardStyledProps>`
@@ -17,7 +18,8 @@ export const GameBoardStyled = styled.main<GameBoardStyledProps>`
   justify-content: space-between;
 
   &:after {
-    display: ${({ mobileMenu }) => (mobileMenu ? 'block' : 'none')};
+    display: ${({ mobileMenu, showGameOverModal }) =>
+      mobileMenu || showGameOverModal ? 'block' : 'none'};
     position: absolute;
     top: 0;
     left: 0;

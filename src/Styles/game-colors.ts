@@ -21,7 +21,7 @@ const gameColors = {
   backgroundColor: {
     gameStart: colors.blue.darker,
     gameBoard: colors.white.light,
-  }, //background color of the application
+  },
   blueButton: {
     background: colors.blue.dark,
     backgroundDisabled: colors.blue.greyish,
