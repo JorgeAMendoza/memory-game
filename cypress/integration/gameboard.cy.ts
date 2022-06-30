@@ -1,12 +1,12 @@
 /// <reference types="cypress" />
 
-describe('game board rendered with number game, one player, and 4x4 grid', () => {
+describe.only('game board rendered with number game, one player, and 4x4 grid', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.get(`[data-testid="gameStartButton"]`).click();
   });
 
-  it('board rendered after game start button click', () => {
+  it.only('board rendered after game start button click', () => {
     cy.get('[data-testid="gameBoard"]');
   });
 

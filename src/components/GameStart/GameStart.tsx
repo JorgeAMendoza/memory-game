@@ -58,24 +58,22 @@ const GameStart = () => {
           <section>
             <h3>Select Theme</h3>
             <GameSelectionCategory>
-              <MenuSelection>
+              <MenuSelection data-testid="gameTypeNumber">
                 <input
                   type="radio"
                   name="gameType"
                   checked={gameType === 'numbers' ? true : false}
                   onChange={() => setGameType('numbers')}
-                  data-testid="gameTypeNumber"
                 />
                 <span>Numbers</span>
               </MenuSelection>
 
-              <MenuSelection>
+              <MenuSelection data-testid="gameTypeIcon">
                 <input
                   type="radio"
                   name="gameType"
                   checked={gameType === 'icons' ? true : false}
                   onChange={() => setGameType('icons')}
-                  data-testid="gameTypeIcon"
                 />
                 <span>Icons</span>
               </MenuSelection>
@@ -84,7 +82,7 @@ const GameStart = () => {
 
           <section>
             <h3>Number of Players</h3>
-            <GameSelectionCategory>
+            <GameSelectionCategory data-testid="numPlayers">
               {[1, 2, 3, 4].map((num) => (
                 <MenuSelection key={num}>
                   <input
@@ -102,22 +100,20 @@ const GameStart = () => {
           <section>
             <h3>Grid Size</h3>
             <GameSelectionCategory>
-              <MenuSelection>
+              <MenuSelection data-testid="gameGridSizeFour">
                 <input
                   type="radio"
                   name="gridSize"
                   checked={gridSize === '4x4' ? true : false}
                   onChange={() => setGridSize('4x4')}
-                  data-testid="gameGridSizeFour"
                 />
                 <span>4x4</span>
               </MenuSelection>
-              <MenuSelection>
+              <MenuSelection data-testid="gameGridSizeSix">
                 <input
                   type="radio"
                   name="gridSize"
                   onChange={() => setGridSize('6x6')}
-                  data-testid="gameGridSizeSix"
                 />
                 <span>6x6</span>
               </MenuSelection>
