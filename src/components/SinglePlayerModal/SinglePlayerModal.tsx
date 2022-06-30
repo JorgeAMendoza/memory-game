@@ -1,3 +1,12 @@
+import {
+  SinglePlayerModalStyled,
+  SingleModalContainer,
+  SingleModalHeader,
+  SingleModalStats,
+  SingleGameOptions,
+} from './SinglePlayerModal.styled';
+import { OrangeButton, GreyButton } from '../Buttons/Button.styled';
+
 interface SinglePlayerModalProps {
   movesMade: number;
   resetGame: () => void;
@@ -21,28 +30,30 @@ const SinglePlayerModal = ({
     return `${minuteValue}:${secondsValue}`;
   };
   return (
-    <div>
-      <div>
-        <h2>You did it!</h2>
-        <p></p>
-      </div>
+    <SinglePlayerModalStyled>
+      <SingleModalContainer>
+        <SingleModalHeader>
+          <h2>You did it!</h2>
+          <p>Game over! Here{`'`}s how you got on... </p>
+        </SingleModalHeader>
 
-      <div>
-        <div>
-          <p>Time Elapsed</p>
-          <p>{parseTime()}</p>
-        </div>
-        <div>
-          <p>Moves Taken</p>
-          <p>{movesMade}</p>
-        </div>
-      </div>
+        <SingleModalStats>
+          <div>
+            <p>Time Elapsed</p>
+            <p>{parseTime()}</p>
+          </div>
+          <div>
+            <p>Moves Taken</p>
+            <p>{movesMade}</p>
+          </div>
+        </SingleModalStats>
 
-      <div>
-        <button onClick={resetGame}>Restart</button>
-        <button onClick={newGame}>Setup New Game</button>
-      </div>
-    </div>
+        <SingleGameOptions>
+          <OrangeButton onClick={resetGame}>Restart</OrangeButton>
+          <GreyButton onClick={newGame}>Setup New Game</GreyButton>
+        </SingleGameOptions>
+      </SingleModalContainer>
+    </SinglePlayerModalStyled>
   );
 };
 

@@ -69,7 +69,7 @@ const gameColors = {
     playerWinBackground: colors.blue.darker,
     playerLoseBackground: colors.white.pale,
     playerWinTextColor: colors.white.light,
-    playerLoseNameTextColor: colors.blue.paleLight,
+    playerLoseNameTextColor: colors.blue.pale,
     playerLoseScoreTextColor: colors.blue.dark,
     movesTextColor: colors.blue.dark,
     timeElapsedColor: colors.blue.dark,
