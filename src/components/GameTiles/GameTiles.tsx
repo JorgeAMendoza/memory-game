@@ -1,9 +1,10 @@
 import { ReactNode, useEffect, useState } from 'react';
-import NumberGameTile from './NumberGameTile';
-import IconGameTile from './IconGameTile';
+import NumberGameTile from '../NumberGameTile/NumberGameTile';
+import IconGameTile from '../IconGameTile/IconGameTile';
 import { TileValueHashMap } from '../../types/game-board-types';
 import { gameIconValues } from '../../types/general-types';
 import createRandomValues from '../../utils/create-random-values';
+import { GameTilesStyled, GameTilesWrapper } from './GameTiles.styled';
 
 interface GameTilesProps {
   boardSize: '4x4' | '6x6';
@@ -13,7 +14,7 @@ interface GameTilesProps {
   currentIndex: string;
 }
 
-const GameTilesWrapper = ({
+const GameTiles = ({
   boardSize,
   gameType,
   clickPiece,
@@ -81,7 +82,13 @@ const GameTilesWrapper = ({
     }
     return gameTiles;
   };
-  return <div>{tileValues.length !== 0 ? renderGameTiles() : null}</div>;
+  return (
+    <GameTilesStyled>
+      <GameTilesWrapper gridSize={boardSize === '4x4' ? '4' : '6'}>
+        {tileValues.length !== 0 ? renderGameTiles() : null}
+      </GameTilesWrapper>
+    </GameTilesStyled>
+  );
 };
 
-export default GameTilesWrapper;
+export default GameTiles;

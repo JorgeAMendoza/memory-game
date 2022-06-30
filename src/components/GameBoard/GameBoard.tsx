@@ -8,7 +8,7 @@ import {
   resetPlayerScores,
 } from '../../redux/game-reducer';
 import darkLogo from '../../assets/logo-dark.svg';
-import GameTilesWrapper from './GameTilesWrapper';
+import GameTiles from '../GameTiles/GameTiles';
 import MultiplePlayerScore from '../MultiplePlayerScore/MultiplePlayerScore';
 import SinglePlayerScore from '../SinglePlayerScore/SinglePlayerScore';
 import { TileValueHashMap } from '../../types/game-board-types';
@@ -16,6 +16,8 @@ import SinglePlayerModal from '../SinglePlayerModal/SinglePlayerModal';
 import MultiplePlayerModal from '../MultiplePlayerModal/MultiplePlayerModal';
 import modalPlayerData from '../../utils/modal-player-data';
 import MobileMenu from '../MobileMenu/MobileMenu';
+import { GameBoardStyled } from './GameBoard.styled';
+import { OrangeButton } from '../Buttons/Button.styled';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
@@ -97,7 +99,11 @@ const GameBoard = () => {
   };
 
   return (
-    <main data-testid="gameBoard">
+    <GameBoardStyled
+      mobileMenu={mobileMenu}
+      showGameOverModal={showGameOverModal}
+      data-testid="gameBoard"
+    >
       {mobileMenu && (
         <MobileMenu
           restartGame={resetGame}
@@ -107,8 +113,13 @@ const GameBoard = () => {
       )}
       {showGameOverModal && renderGameOverModal()}
       <header>
-        <img src={darkLogo} alt="Game logo" />
-        {isMobile && <button onClick={() => setMobileMenu(true)}>Menu</button>}
+        <div>
+          <img src={darkLogo} alt="Game logo" />
+        </div>
+
+        {isMobile && (
+          <OrangeButton onClick={() => setMobileMenu(true)}>Menu</OrangeButton>
+        )}
         {!isMobile && (
           <div>
             <button onClick={resetGame}>Reset</button>
@@ -117,31 +128,27 @@ const GameBoard = () => {
         )}
       </header>
 
-      <section>
-        {!state.boardSize ? null : (
-          <GameTilesWrapper
-            boardSize={state.boardSize}
-            gameType={state.gameType}
-            clickPiece={clickPiece}
-            currentIndex={currentIndex}
-            matchedValues={matchedValues}
-          />
-        )}
-      </section>
+      {!state.boardSize ? null : (
+        <GameTiles
+          boardSize={state.boardSize}
+          gameType={state.gameType}
+          clickPiece={clickPiece}
+          currentIndex={currentIndex}
+          matchedValues={matchedValues}
+        />
+      )}
 
-      <section>
-        {state.players.length === 1 ? (
-          <SinglePlayerScore
-            moves={movesMade}
-            seconds={seconds}
-            setSeconds={setSeconds}
-            countUp={countUp}
-          />
-        ) : (
-          <MultiplePlayerScore />
-        )}
-      </section>
-    </main>
+      {state.players.length === 1 ? (
+        <SinglePlayerScore
+          moves={movesMade}
+          seconds={seconds}
+          setSeconds={setSeconds}
+          countUp={countUp}
+        />
+      ) : (
+        <MultiplePlayerScore />
+      )}
+    </GameBoardStyled>
   );
 };
 

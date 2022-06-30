@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { SinglePlayerScoreStyled } from './SinglePlayerScore.styled';
 
 interface SinglePlayerScore {
   moves: number;
@@ -35,7 +36,7 @@ const SinglePlayerScore = ({
     return () => clearInterval(countupTimer);
   });
   return (
-    <section>
+    <SinglePlayerScoreStyled>
       <div>
         <p>Time</p>
         <p>
@@ -46,7 +47,7 @@ const SinglePlayerScore = ({
         <p>Moves</p>
         <p>{moves}</p>
       </div>
-    </section>
+    </SinglePlayerScoreStyled>
   );
 };
 

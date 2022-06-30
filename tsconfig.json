@@ -6,6 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
+    "plugins": [{
+      "name": "typescript-styled-plugin",
+      "validate": false
+    }],
     "types": ["cypress", "node"],
     "skipLibCheck": true,
     "esModuleInterop": true,

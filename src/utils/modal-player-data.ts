@@ -18,8 +18,8 @@ const modalPlayerData = (playerData: Player[]): FinalPlayerData => {
   }
 
   const winningMessage = isTied
-    ? `it's a tie!`
-    : `player ${winningPlayer} wins!`;
+    ? `It's a tie!`
+    : `Player ${winningPlayer} wins!`;
 
   const playerResults = playerData
     .map((player) => {
