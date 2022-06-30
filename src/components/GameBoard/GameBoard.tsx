@@ -17,7 +17,7 @@ import MultiplePlayerModal from '../MultiplePlayerModal/MultiplePlayerModal';
 import modalPlayerData from '../../utils/modal-player-data';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { GameBoardStyled } from './GameBoard.styled';
-import { OrangeButton } from '../Buttons/Button.styled';
+import { OrangeButton, GreyButton } from '../Buttons/Button.styled';
 
 const GameBoard = () => {
   const [clickedPiece, setClickedPiece] = useState<string | number>('');
@@ -122,8 +122,8 @@ const GameBoard = () => {
         )}
         {!isMobile && (
           <div>
-            <button onClick={resetGame}>Reset</button>
-            <button onClick={newGame}>New Game</button>
+            <OrangeButton onClick={resetGame}>Reset</OrangeButton>
+            <GreyButton onClick={newGame}>New Game</GreyButton>
           </div>
         )}
       </header>
