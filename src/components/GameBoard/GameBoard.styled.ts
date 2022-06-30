@@ -51,5 +51,21 @@ export const GameBoardStyled = styled.main<GameBoardStyledProps>`
     img {
       width: 10rem;
     }
+
+    @media screen and ${device.tablet} {
+      button {
+        min-width: 11ch;
+        font-size: 2rem;
+
+        &:first-child {
+          margin-right: 1.5rem;
+          min-width: 9ch;
+        }
+      }
+
+      img {
+        width: 15rem;
+      }
+    }
   }
 `;

@@ -15,6 +15,6 @@ export const GameTilesWrapper = styled.div<GameTilesStyledProps>`
   grid-template-rows: repeat(${({ gridSize }) => gridSize}, 1fr);
   width: 90%;
   max-width: 49rem;
-  height: min(90vw, 46rem);
-  gap: 1.5rem;
+  height: min(90vw, 49rem);
+  gap: 1.4rem;
 `;
