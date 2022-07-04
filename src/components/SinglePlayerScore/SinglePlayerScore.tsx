@@ -39,13 +39,13 @@ const SinglePlayerScore = ({
     <SinglePlayerScoreStyled>
       <div>
         <p>Time</p>
-        <p>
+        <p data-testid="gameTime">
           {minuteTime}:{secondTime}
         </p>
       </div>
       <div>
         <p>Moves</p>
-        <p>{moves}</p>
+        <p data-testid="movesMade">{moves}</p>
       </div>
     </SinglePlayerScoreStyled>
   );

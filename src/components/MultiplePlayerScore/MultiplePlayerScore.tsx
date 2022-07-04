@@ -12,12 +12,14 @@ const MultiplePlayerScore = () => {
   });
   const players = useAppSelector((state) => state.players);
   return (
-    <MultiplePlayerScoreStyled>
+    <MultiplePlayerScoreStyled data-testid="playerScoreCards">
       {players.map((player) => (
         <PlayerScore key={player.name} currentTurn={player.currentTurn}>
           <p>{isTablet ? `Player ${player.name}` : `P${player.name}`}</p>
-          <p>{player.score}</p>
-          {isTablet && player.currentTurn && <p>Current Turn</p>}
+          <p> {player.score}</p>
+          {isTablet && player.currentTurn && (
+            <p data-testid="currentTurnText"> Current Turn</p>
+          )}
         </PlayerScore>
       ))}
     </MultiplePlayerScoreStyled>

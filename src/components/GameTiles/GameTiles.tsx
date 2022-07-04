@@ -84,7 +84,7 @@ const GameTiles = ({
   };
   return (
     <GameTilesStyled>
-      <GameTilesWrapper gridSize={boardSize === '4x4' ? '4' : '6'}>
+      <GameTilesWrapper data-testid="gameTilesContainer" gridSize={boardSize === '4x4' ? '4' : '6'}>
         {tileValues.length !== 0 ? renderGameTiles() : null}
       </GameTilesWrapper>
     </GameTilesStyled>

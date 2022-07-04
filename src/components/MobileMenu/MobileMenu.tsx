@@ -13,11 +13,18 @@ const MobileMenu = ({
   setMobileMenu,
 }: MobileMenuProps) => {
   return (
-    <MobileMenuStyled>
+    <MobileMenuStyled data-testid="mobileMenu">
       <div>
-        <OrangeButton onClick={restartGame}>restart</OrangeButton>
-        <GreyButton onClick={newGame}>new game</GreyButton>
-        <GreyButton onClick={() => setMobileMenu(false)}>
+        <OrangeButton data-testid="mobileRestartButton" onClick={restartGame}>
+          restart
+        </OrangeButton>
+        <GreyButton data-testid="mobileNewGameButton" onClick={newGame}>
+          new game
+        </GreyButton>
+        <GreyButton
+          data-testid="mobileResumeButton"
+          onClick={() => setMobileMenu(false)}
+        >
           resume game
         </GreyButton>
       </div>
