@@ -21,14 +21,14 @@ const MultiplePlayerModal = ({
   playerData,
 }: MultiplePlayerModalProps) => {
   return (
-    <MultiplePlayerModalStyled>
+    <MultiplePlayerModalStyled data-testid="multiPlayerGameModal">
       <MultipleModalContainer>
         <MultipleModalHeader>
-          <h2>{playerData.modalMessage}</h2>
+          <h2 data-testid="multiWinnerMessage">{playerData.modalMessage}</h2>
           <p>Game Over! Here are the results...</p>
         </MultipleModalHeader>
 
-        <PlayerScoreList>
+        <PlayerScoreList data-testid="playerScoreList">
           {playerData.players.map((player) => (
             <PlayerScoreItem key={player.name} winner={player.isWinner}>
               <p>

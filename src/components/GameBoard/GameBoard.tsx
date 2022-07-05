@@ -118,12 +118,21 @@ const GameBoard = () => {
         </div>
 
         {isMobile && (
-          <OrangeButton onClick={() => setMobileMenu(true)}>Menu</OrangeButton>
+          <OrangeButton
+            data-testid="mobileMenuButton"
+            onClick={() => setMobileMenu(true)}
+          >
+            Menu
+          </OrangeButton>
         )}
         {!isMobile && (
           <div>
-            <OrangeButton onClick={resetGame}>Reset</OrangeButton>
-            <GreyButton onClick={newGame}>New Game</GreyButton>
+            <OrangeButton data-testid="headerRestartButton" onClick={resetGame}>
+              Reset
+            </OrangeButton>
+            <GreyButton data-testid="headerNewGameButton" onClick={newGame}>
+              New Game
+            </GreyButton>
           </div>
         )}
       </header>
