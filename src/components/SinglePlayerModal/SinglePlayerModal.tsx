@@ -30,7 +30,7 @@ const SinglePlayerModal = ({
     return `${minuteValue}:${secondsValue}`;
   };
   return (
-    <SinglePlayerModalStyled>
+    <SinglePlayerModalStyled data-testid="singlePlayerGameOver">
       <SingleModalContainer>
         <SingleModalHeader>
           <h2>You did it!</h2>
@@ -44,7 +44,7 @@ const SinglePlayerModal = ({
           </div>
           <div>
             <p>Moves Taken</p>
-            <p>{movesMade}</p>
+            <p data-testid="modalMovesMade">{movesMade}</p>
           </div>
         </SingleModalStats>
 
