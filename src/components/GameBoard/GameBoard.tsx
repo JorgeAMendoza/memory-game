@@ -109,6 +109,7 @@ const GameBoard = () => {
           restartGame={resetGame}
           newGame={newGame}
           setMobileMenu={setMobileMenu}
+          setCountUp={setCountUp}
         />
       )}
       {showGameOverModal && renderGameOverModal()}
@@ -120,7 +121,10 @@ const GameBoard = () => {
         {isMobile && (
           <OrangeButton
             data-testid="mobileMenuButton"
-            onClick={() => setMobileMenu(true)}
+            onClick={() => {
+              setMobileMenu(true);
+              setCountUp(false);
+            }}
           >
             Menu
           </OrangeButton>
