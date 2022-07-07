@@ -5,7 +5,7 @@ interface TileProps {
   buttonState: 'win' | 'selected' | '';
 }
 
-export const NumberGameTileStyled = styled.button<TileProps>`
+export const GameTileStyled = styled.button<TileProps>`
   border: none;
   font-family: inherit;
   font-weight: bold;
@@ -19,6 +19,14 @@ export const NumberGameTileStyled = styled.button<TileProps>`
   position: relative;
   cursor: pointer;
   transition: background-color 0.25s ease-in;
+
+  /* for icon tiles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 50%;
+  }
 
   &:after {
     position: absolute;
@@ -42,5 +50,3 @@ export const NumberGameTileStyled = styled.button<TileProps>`
         : `${gameColors.gameTile.coverHover}`};
   }
 `;
-
-// so we need to create a cover that is the dark blue

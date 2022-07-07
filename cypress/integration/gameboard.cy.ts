@@ -24,9 +24,15 @@ describe('game board rendered with number game, one player, and 4x4 grid', () =>
     });
   });
   it('three moves counted', () => {
-    cy.get('[data-testid="gameTilesContainer"]').find(':nth-child(1)').click();
-    cy.get('[data-testid="gameTilesContainer"]').find(':nth-child(2)').click();
-    cy.get('[data-testid="gameTilesContainer"]').find(':nth-child(3)').click();
+    cy.get('[data-testid="gameTilesContainer"]')
+      .find('> :nth-child(1)')
+      .click();
+    cy.get('[data-testid="gameTilesContainer"]')
+      .find('> :nth-child(2)')
+      .click();
+    cy.get('[data-testid="gameTilesContainer"]')
+      .find('> :nth-child(3)')
+      .click();
     cy.get('[data-testid="movesMade"]').should('contain.text', 3);
   });
 });

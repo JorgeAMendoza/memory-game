@@ -1,10 +1,10 @@
 import { ReactNode, useEffect, useState } from 'react';
-import NumberGameTile from '../NumberGameTile/NumberGameTile';
-import IconGameTile from '../IconGameTile/IconGameTile';
 import { TileValueHashMap } from '../../types/game-board-types';
 import { gameIconValues } from '../../types/general-types';
 import createRandomValues from '../../utils/create-random-values';
 import { GameTilesStyled, GameTilesWrapper } from './GameTiles.styled';
+import getIconSource from '../../utils/get-icon-source';
+import GameTile from '../GameTile/GameTile';
 
 interface GameTilesProps {
   boardSize: '4x4' | '6x6';
@@ -48,7 +48,7 @@ const GameTiles = ({
     for (let i = 0; i < tileValues.length; i++) {
       for (let j = 0; j < tileValues[i].length; j++) {
         gameTiles.push(
-          <NumberGameTile
+          <GameTile
             key={`${i},${j}`}
             value={tileValues[i][j]}
             clickPiece={clickPiece}
@@ -56,7 +56,9 @@ const GameTiles = ({
             indexTwo={`${j}`}
             currentSelectedIndex={currentIndex}
             matchedValuesHash={matchedValues}
-          />
+          >
+            <p>{tileValues[i][j]}</p>
+          </GameTile>
         );
       }
     }
@@ -68,7 +70,7 @@ const GameTiles = ({
     for (let i = 0; i < tileValues.length; i++) {
       for (let j = 0; j < tileValues[i].length; j++) {
         gameTiles.push(
-          <IconGameTile
+          <GameTile
             key={`${i},${j}`}
             value={tileValues[i][j]}
             clickPiece={clickPiece}
@@ -76,7 +78,12 @@ const GameTiles = ({
             indexTwo={`${j}`}
             currentSelectedIndex={currentIndex}
             matchedValuesHash={matchedValues}
-          />
+          >
+            <img
+              src={getIconSource(tileValues[i][j] as gameIconValues)}
+              alt={`${tileValues[i][j]} icon`}
+            />
+          </GameTile>
         );
       }
     }
@@ -84,7 +91,10 @@ const GameTiles = ({
   };
   return (
     <GameTilesStyled>
-      <GameTilesWrapper data-testid="gameTilesContainer" gridSize={boardSize === '4x4' ? '4' : '6'}>
+      <GameTilesWrapper
+        data-testid="gameTilesContainer"
+        gridSize={boardSize === '4x4' ? '4' : '6'}
+      >
         {tileValues.length !== 0 ? renderGameTiles() : null}
       </GameTilesWrapper>
     </GameTilesStyled>
