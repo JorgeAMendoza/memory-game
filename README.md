@@ -1,46 +1,16 @@
+# FrontEndMentor Memory Game Challenge
+![Memory game Desktop Image](./src/assets/app-images/game-desktop.png)
+![Memory game Desktop Image](./src/assets/app-images/game-mobile.png)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). \
+
+This project was provided [FrontEndMentor](https://www.frontendmentor.io/) and the challenge is a memory game that has a number and icon mode, keeps track of the score, has a multiple and single player mode, and can be reset any time. You can find the page for the challenge [here](https://www.frontendmentor.io/challenges/memory-game-vse4WFPvM/hub/memory-game-KFF7hBPcY). \
+
+## Goals and Challenges
+My focus was to get more practice with Typescript and React, while also getting deeper in depth with using the Cypress testing package. Usually I just go straight to creating the application, but this time I wrote down how I wanted the applicaiton to run, then created tested based on my inital findings. \
+
+As of now the game runs smoothly with no major issues. One thing I plan to fix in the future is that in single player mode, when a user clicks a game tile, if done in quick succession the counter will "stop". This is because the way that I check if each game tile needs to be disabled is that I run a function on each one, and this many functions on the call stack will cause a pause for setTimeout until the call stack is cleared. I will look for ways to optimize my game tile disabling, or find a way a to let the timer continue regardless of whatever else is goin on (web workers?).
+
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was created with create-react-app.
