@@ -1,4 +1,4 @@
-export type gameIconValues =
+export type GameIconValues =
   | 'anchor'
   | 'baseball'
   | 'basketball'

@@ -1,5 +1,5 @@
 import GameInformation from '../types/game-context-types';
-import { gameIconValues } from '../types/general-types';
+import { GameIconValues } from '../types/general-types';
 
 const numSet = [
   1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12,
@@ -48,7 +48,7 @@ const iconSet = [
 type ExtractTypeVal<T, K extends keyof T> = T[K];
 type RandomMatrixType<T> = T extends 'numbers'
   ? number[][]
-  : gameIconValues[][];
+  : GameIconValues[][];
 
 type gameTypeArg = ExtractTypeVal<GameInformation, 'gameType'>;
 type boardSizeArg = ExtractTypeVal<GameInformation, 'boardSize'>;
@@ -74,7 +74,7 @@ const createRandomValues = (gameType: gameTypeArg, boardSize: boardSizeArg) => {
   ) {
     for (let i = 0; i < gridLength; i++) {
       for (let j = 0; j < gridLength; j++) {
-        randomMatrix[i][j] = finalTargetSet.shift() as number | gameIconValues;
+        randomMatrix[i][j] = finalTargetSet.shift() as number | GameIconValues;
       }
     }
     return randomMatrix;
@@ -86,7 +86,7 @@ const createRandomValues = (gameType: gameTypeArg, boardSize: boardSizeArg) => {
         Math.random() * (finalTargetSet.length - 1)
       );
       const randomValue = finalTargetSet[randomIndex];
-      randomMatrix[i][j] = randomValue as number | gameIconValues;
+      randomMatrix[i][j] = randomValue as number | GameIconValues;
       finalTargetSet.splice(randomIndex, 1);
     }
   }
