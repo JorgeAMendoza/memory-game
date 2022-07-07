@@ -1,9 +1,9 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { TileValueHashMap } from '../../types/game-board-types';
-import { gameIconValues } from '../../types/general-types';
+import { GameIconValues } from '../../types/general-types';
 import createRandomValues from '../../utils/create-random-values';
 import { GameTilesStyled, GameTilesWrapper } from './GameTiles.styled';
-import getIconSource from '../../utils/get-icon-source';
+import iconSourceMap from '../../utils/icon-source-map';
 import GameTile from '../GameTile/GameTile';
 
 interface GameTilesProps {
@@ -21,7 +21,7 @@ const GameTiles = ({
   currentIndex,
   matchedValues,
 }: GameTilesProps) => {
-  const [tileValues, setTileValues] = useState<number[][] | gameIconValues[][]>(
+  const [tileValues, setTileValues] = useState<number[][] | GameIconValues[][]>(
     []
   );
   const [resetGame, setResetGame] = useState<boolean>(true);
@@ -80,7 +80,7 @@ const GameTiles = ({
             matchedValuesHash={matchedValues}
           >
             <img
-              src={getIconSource(tileValues[i][j] as gameIconValues)}
+              src={iconSourceMap[tileValues[i][j] as GameIconValues]}
               alt={`${tileValues[i][j]} icon`}
             />
           </GameTile>

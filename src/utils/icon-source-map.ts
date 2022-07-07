@@ -16,47 +16,31 @@ import moonIcon from '../assets/game-icons/moon.png';
 import robotIcon from '../assets/game-icons/robot.png';
 import snowflakeIcon from '../assets/game-icons/snowflake.png';
 import sunIcon from '../assets/game-icons/sun.png';
-import { gameIconValues } from '../types/general-types';
+import { GameIconValues } from '../types/general-types';
 
-const getIconSource = (iconValue: gameIconValues): string => {
-  switch (iconValue) {
-    case 'anchor':
-      return anchorIcon;
-    case 'baseball':
-      return baseballIcon;
-    case 'basketball':
-      return basketballIcon;
-    case 'car':
-      return carIcon;
-    case 'cat':
-      return catIcon;
-    case 'chicken':
-      return chickenIcon;
-    case 'controller':
-      return controllerIcon;
-    case 'dog-pee':
-      return dogPeeIcon;
-    case 'flask':
-      return flaskIcon;
-    case 'football':
-      return footballIcon;
-    case 'futbol':
-      return futbolIcon;
-    case 'hamster':
-      return hamsterIcon;
-    case 'hand-spock':
-      return handSpockIcon;
-    case 'lira-sign':
-      return liraSignIcon;
-    case 'moon':
-      return moonIcon;
-    case 'robot':
-      return robotIcon;
-    case 'snowflake':
-      return snowflakeIcon;
-    case 'sun':
-      return sunIcon;
-  }
+type IconSourceMap = {
+  [K in `${GameIconValues}`]: string;
 };
 
-export default getIconSource;
+const iconSourceMap: IconSourceMap = {
+  anchor: anchorIcon,
+  baseball: baseballIcon,
+  basketball: basketballIcon,
+  car: carIcon,
+  cat: catIcon,
+  chicken: chickenIcon,
+  controller: controllerIcon,
+  'dog-pee': dogPeeIcon,
+  flask: flaskIcon,
+  football: footballIcon,
+  futbol: futbolIcon,
+  hamster: hamsterIcon,
+  'hand-spock': handSpockIcon,
+  'lira-sign': liraSignIcon,
+  moon: moonIcon,
+  robot: robotIcon,
+  snowflake: snowflakeIcon,
+  sun: sunIcon,
+};
+
+export default iconSourceMap;
