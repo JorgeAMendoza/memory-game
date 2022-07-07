@@ -1,47 +1,48 @@
+import React from 'react';
 import { TileValueHashMap } from '../../types/game-board-types';
-import { NumberGameTileStyled } from './NumberGameTile.styled';
+import { GameTileStyled } from './GameTile.styled';
 
-interface NumberGameTileProps {
+interface GameTileProps {
   value: number | string;
   clickPiece: (value: string | number, i: string, j: string) => void;
   indexOne: string;
   indexTwo: string;
   currentSelectedIndex: string;
   matchedValuesHash: TileValueHashMap;
+  children: React.ReactNode;
 }
 
 type ButtonState = 'win' | 'selected' | '';
 
-const NumberGameTile = ({
+const GameTile = ({
   value,
   clickPiece,
   indexOne,
   indexTwo,
   currentSelectedIndex,
   matchedValuesHash,
-}: NumberGameTileProps) => {
+  children,
+}: GameTileProps) => {
   const disableTile = () => {
     if (value in matchedValuesHash) return true;
     else if (`${indexOne},${indexTwo}` === currentSelectedIndex) return true;
     else return false;
   };
-  const buttonStaus = (): ButtonState => {
+  const buttonStatus = (): ButtonState => {
     if (value in matchedValuesHash) return 'win';
     else if (`${indexOne},${indexTwo}` === currentSelectedIndex)
       return 'selected';
     else return '';
   };
   return (
-    <NumberGameTileStyled
-      buttonState={buttonStaus()}
-      onClick={() => {
-        clickPiece(value, indexOne, indexTwo);
-      }}
+    <GameTileStyled
+      buttonState={buttonStatus()}
+      onClick={() => clickPiece(value, indexOne, indexTwo)}
       disabled={disableTile()}
     >
-      {value}
-    </NumberGameTileStyled>
+      {children}
+    </GameTileStyled>
   );
 };
 
-export default NumberGameTile;
+export default GameTile;
