@@ -21,21 +21,21 @@ const playerTestDataThree: Player[] = [
 describe('modal player data function that returns data to be used by multiplayer game over component', () => {
   test('player 2 wins the game', () => {
     const result = modalPlayerData(playerTestDataOne);
-    expect(result.modalMessage).toBe('player 2 wins!');
+    expect(result.modalMessage).toBe('Player 2 wins!');
     expect(result.players[0].isWinner).toBe(true);
     expect(result.players[0].score).toBe(10);
   });
 
   test('player 3 wins the game', () => {
     const result = modalPlayerData(playerTestDataTwo);
-    expect(result.modalMessage).toBe('player 3 wins!');
+    expect(result.modalMessage).toBe('Player 3 wins!');
     expect(result.players[0].isWinner).toBe(true);
     expect(result.players[0].score).toBe(10);
   });
 
   test('player 2 and 3 tie', () => {
     const result = modalPlayerData(playerTestDataThree);
-    expect(result.modalMessage).toBe(`it's a tie!`);
+    expect(result.modalMessage).toBe(`It's a tie!`);
     expect(result.players[0].isWinner).toBe(true);
     expect(result.players[1].isWinner).toBe(true);
     expect(result.players[0].name).toBe('2');

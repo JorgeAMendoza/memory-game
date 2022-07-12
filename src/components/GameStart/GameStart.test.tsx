@@ -42,6 +42,7 @@ describe('Game start component', () => {
       const gameGridSize: HTMLInputElement = await screen.findByTestId(
         'gameGridSizeFour'
       );
+      console.log(gameGridSize);
       expect(gameGridSize.value).toBe('on');
     });
   });
