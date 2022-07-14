@@ -9,24 +9,24 @@ on:
     types: [opened, synchronize]
 
 jobs: 
-  vercel-deployment-pipeline:
+  vercel_deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
-      -uses: actions/checkout@v3
-      -uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-      -name: npm install
-      run: npm install
-      -name: lint
-      run: npm run lint
-      -name: test
-      run: npm test
-      -name: npm start-dev
-      run: npm run start
-      -name: cypress test
-      uses: cypress-io/github-action@v2
-      with: 
-        command: npm run cypress:run
-        start: npm run start
-        wait-on: http://localhost:3000
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: npm install
+        run: npm install
+      - name: lint
+        run: npm run lint
+      - name: test
+        run: npm test
+      - name: npm start-dev
+        run: npm run start
+      - name: cypress test
+        uses: cypress-io/github-action@v2
+        with: 
+          command: npm run cypress:run
+          start: npm run start
+          wait-on: http://localhost:3000
