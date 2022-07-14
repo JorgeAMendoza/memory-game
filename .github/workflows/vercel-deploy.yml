@@ -22,8 +22,6 @@ jobs:
         run: npm run lint
       - name: test
         run: npm test
-      - name: npm start-dev
-        run: npm run start
       - name: cypress test
         uses: cypress-io/github-action@v2
         with: 
