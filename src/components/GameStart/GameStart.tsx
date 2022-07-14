@@ -64,6 +64,7 @@ const GameStart = () => {
                   name="gameType"
                   checked={gameType === 'numbers' ? true : false}
                   onChange={() => setGameType('numbers')}
+                  data-testid="gameTypeNumberInput"
                 />
                 <span>Numbers</span>
               </MenuSelection>
@@ -106,6 +107,7 @@ const GameStart = () => {
                   name="gridSize"
                   checked={gridSize === '4x4' ? true : false}
                   onChange={() => setGridSize('4x4')}
+                  data-testid="gameGridSizeFourInput"
                 />
                 <span>4x4</span>
               </MenuSelection>
