@@ -17,16 +17,16 @@ jobs:
       with:
         node-version: '16'
       -name: npm install
-        run: npm install
+      run: npm install
       -name: lint
-        run: npm run lint
+      run: npm run lint
       -name: test
-        run: npm test
+      run: npm test
       -name: npm start-dev
-        run: npm run start
+      run: npm run start
       -name: cypress test
-        uses: cypress-io/github-action@v2
-        with: 
-          command: npm run cypress:run
-          start: npm run start
-          wait-on: http://localhost:3000
+      uses: cypress-io/github-action@v2
+      with: 
+        command: npm run cypress:run
+        start: npm run start
+        wait-on: http://localhost:3000
