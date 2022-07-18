@@ -1,14 +1,14 @@
 name: Vercel Deployment Pipeline
 
-on: 
-  push: 
-    branches: 
+on:
+  push:
+    branches:
       - main
   pull_request:
     branches: [main]
     types: [opened, synchronize]
 
-jobs: 
+jobs:
   vercel_deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
@@ -17,14 +17,21 @@ jobs:
         with:
           node-version: '16'
       - name: npm install
-        run: npm install
+        run: npm ci
       - name: lint
         run: npm run lint
       - name: test
         run: npm test
       - name: cypress test
         uses: cypress-io/github-action@v2
-        with: 
+        with:
           command: npm run cypress:run
           start: npm run start
           wait-on: http://localhost:3000
+      - name: vercel deploy
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod'
+          vercel-org-id: '${{ secrets.ORG_ID }}'
+          vercel-project-id: '${{ secrets.PROJECT_ID }}'
