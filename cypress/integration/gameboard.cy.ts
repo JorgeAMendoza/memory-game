@@ -18,11 +18,6 @@ describe('game board rendered with number game, one player, and 4x4 grid', () =>
       .should('contain.text', 1);
   });
 
-  it('after 5 seconds, game timer is at 0:05', () => {
-    setTimeout(() => {
-      cy.get(`[data-testid="gameTime"]`).contains('0:05');
-    });
-  });
   it('three moves counted', () => {
     cy.get('[data-testid="gameTilesContainer"]')
       .find('> :nth-child(1)')
