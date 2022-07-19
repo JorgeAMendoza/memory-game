@@ -28,6 +28,8 @@ jobs:
           command: npm run cypress:run
           start: npm run start
           wait-on: http://localhost:3000
+      - name: build
+        run: npm run build
       - name: vercel deploy
         uses: amondnet/vercel-action@v20
         if: ${{!contains(github.event.commits.*.message, '#skip') && github.event_name == 'push'}}
