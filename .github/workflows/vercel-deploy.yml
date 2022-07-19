@@ -1,4 +1,4 @@
-name: Vercel Deployment Pipeline
+name: Vercel Deployment
 
 on:
   push:
