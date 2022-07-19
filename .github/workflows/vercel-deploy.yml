@@ -30,6 +30,7 @@ jobs:
           wait-on: http://localhost:3000
       - name: vercel deploy
         uses: amondnet/vercel-action@v20
+        if: ${{!contains(github.event.commits.*.message, '#skip') && github.event_name == 'push'}}
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-args: '--prod'
