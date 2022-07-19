@@ -26,9 +26,9 @@ describe('Game start component', () => {
     test('radio button starts with number setting', async () => {
       render(GAME_START_COMPONENT);
       const gameTypeInput: HTMLInputElement = await screen.findByTestId(
-        'gameTypeNumber'
+        'gameTypeNumberInput'
       );
-      expect(gameTypeInput.value).toBe('on');
+      expect(gameTypeInput.checked).toBe(true);
     });
     test('radio button starts with number of players at 1 ', async () => {
       render(GAME_START_COMPONENT);
@@ -40,10 +40,9 @@ describe('Game start component', () => {
     test('radio button starts with grid size of 4x4', async () => {
       render(GAME_START_COMPONENT);
       const gameGridSize: HTMLInputElement = await screen.findByTestId(
-        'gameGridSizeFour'
+        'gameGridSizeFourInput'
       );
-      console.log(gameGridSize);
-      expect(gameGridSize.value).toBe('on');
+      expect(gameGridSize.checked).toBe(true);
     });
   });
 
